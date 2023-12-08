@@ -101,36 +101,34 @@
 function salesCountdown(){
     const salesDate = new Date("December 1, 2023 00:00");
     const sale = new Date();
-    const diff = salesDate-sale;
+    const diffSales = salesDate-sale;
 
     const msInSeconds = 1000;
     const msInMinutes = 60*1000;
     const msInHours = 60*60*1000;
     const msInDay = 24*60*60*1000;
 
-    const displayDay = Math.floor(diff/msInDay);
+    const displayDay = Math.floor(diffSales/msInDay);
     document.querySelector(".sales-dates").textContent = displayDay;
 
-    const displayHours = Math.floor((diff%msInDay)/msInHours);
+    const displayHours = Math.floor((diffSales%msInDay)/msInHours);
     document.querySelector(".sales-hours").textContent = displayHours;
 
-    const displayMinutes = Math.floor((diff%msInHours)/msInMinutes);
+    const displayMinutes = Math.floor((diffSales%msInHours)/msInMinutes);
     document.querySelector(".sales-minutes").textContent = displayMinutes;
 
-    const displaySeconds = Math.floor((diff%msInMinutes)/msInSeconds);
+    const displaySeconds = Math.floor((diffSales%msInMinutes)/msInSeconds);
     document.querySelector(".sales-seconds").textContent = displaySeconds;
 
-      if (diff <= 0) {
-        document.querySelector(".sales-days").textContent = 0;
+      if (diffSales <= 0) {
+        
+        document.querySelector(".sales-dates").textContent = 0;
         document.querySelector(".sales-hours").textContent = 0;
         document.querySelector(".sales-minutes").textContent = 0;
         document.querySelector(".sales-seconds").textContent = 0;
         
         clearInterval(salesCount);
-        marryChristmas();
       }
-
-    
     }
 
     let salesCount = setInterval(salesCountdown, 1000);
