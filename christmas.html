@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Holydays</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+<body style="background-image: url(https://images.unsplash.com/photo-1603793303277-ed67787545e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2FudGF8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60);
+      background-repeat: no-repeat; background-size: cover; background-position: center;">
+  <audio id="song" src="Let It Snow - Dean Martin.mp3" loop="loop" autoplay="allowed" ></audio>
+  <div class="christmas-header">
+    <h1 class="christmas-heading">До нового року залишилось</h1>
+  </div>
+  <button class="btn"><img class="play" src="/play-button (1).png"> </button>
+  <div class="christmas-container">
+    <div class="christmas">
+      <div class="christmas-block">
+        <h4 class="christmas-days"></h4>
+        <h3 class="christmas-h3">ДНІВ</h3>
+      </div>
+    </div>
+
+    <div class="christmas">
+      <div class="christmas-block">
+        <h4 class="christmas-hours"></h4>
+        <h3 class="christmas-h3">ГОДИН</h3>
+      </div>
+    </div>
+
+    <div class="christmas">
+      <div class="christmas-block">
+        <h4 class="christmas-minutes"></h4>
+        <h3 class="christmas-h3">ХВИЛИН</h3>
+      </div>
+    </div>
+
+    <div class="christmas">
+      <div class="christmas-block">
+        <h4 class="christmas-seconds"></h4>
+        <h3 class="christmas-h3">СЕКУНД</h3>
+      </div>
+    </div>
+  </div>
+
+
+  <script> 
+  
+    function christmasCountdown(){
+    const christmasDate = new Date("December 25, 2023 00:00");
+    const now = new Date();
+    const diff = christmasDate-now;
+
+    const msInSeconds = 1000;
+    const msInMinutes = 60*1000;
+    const msInHours = 60*60*1000;
+    const msInDay = 24*60*60*1000;
+
+    const displayDay = Math.floor(diff/msInDay);
+    document.querySelector(".christmas-days").textContent = displayDay;
+
+    const displayHours = Math.floor((diff%msInDay)/msInHours);
+    document.querySelector(".christmas-hours").textContent = displayHours;
+
+    const displayMinutes = Math.floor((diff%msInHours)/msInMinutes);
+    document.querySelector(".christmas-minutes").textContent = displayMinutes;
+
+    const displaySeconds = Math.floor((diff%msInMinutes)/msInSeconds);
+    document.querySelector(".christmas-seconds").textContent = displaySeconds;
+
+      if (diff <= 0) {
+        document.querySelector(".christmas-days").textContent = 0;
+        document.querySelector(".christmas-hours").textContent = 0;
+        document.querySelector(".christmas-minutes").textContent = 0;
+        document.querySelector(".christmas-seconds").textContent = 0;
+        
+        clearInterval(christmasCount);
+        marryChristmas();
+      }
+
+    
+    }
+
+    let christmasCount = setInterval(christmasCountdown, 1000);
+
+    function marryChristmas() {
+      const heading = document.querySelector(".christmas-heading");
+      heading.textContent = "MARRY CHRISTMAS!!! HO-HO-HO";
+      heading.classList.add("new-christmas-heading");
+    }
+
+    const btn = document.querySelector(".btn");
+    const song = document.querySelector("#song");
+    btn.addEventListener("click", function () {
+      if (song.paused){
+        song.play();
+      } else { 
+        song.pause();
+      }
+    })
+
+
+  </script>
+</body>
+</html>

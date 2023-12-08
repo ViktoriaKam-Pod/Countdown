@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Countdown</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body style="background-image: url(https://images.unsplash.com/photo-1659670191953-fc44631224ed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjgwfHxiaXJ0aGRheSUyMGJhbGxvb25zfGVufDB8fDB8fHww);
+      background-repeat: no-repeat; background-size: cover; min-height: 100vh; background-position: center;">
+  <div class="birthday-header">
+    <h1 class="birthday-heading">Вечірка розпочнеться через</h1>
+  </div>
+  <div class="birthday-container">
+    <div class="birthday-block">
+      <h2 class="birthday-days birthday-dates"></h2>
+      <h3 class="birthday-h3">ДНІВ</h3>
+    </div>
+    <div class="birthday-block">
+      <h2 class="birthday-days birthday-hours"></h2>
+      <h3 class="birthday-h3">ГОДИН</h3>
+    </div>
+    <div class="birthday-block">
+      <h2 class="birthday-days birthday-minutes"></h2>
+      <h3 class="birthday-h3">ХВИЛИН</h3>
+    </div>
+    <div class="birthday-block">
+      <h2 class="birthday-days birthday-seconds"></h2>
+      <h3 class="birthday-h3">СЕКУНД</h3>
+    </div>
+
+  </div>
+
+
+
+
+  <script>
+
+    function birthdayCountdown(){
+      const birthdayDate = new Date("February 15, 2024 10:00");
+      const today = new Date();
+      const differ = birthdayDate-today;
+
+      const mscInSeconds = 1000;
+      const mscInMinutes = 60*1000;
+      const mscInHours = 60*60*1000;
+      const mscInDay = 24*60*60*1000;
+
+      const displayDays = Math.floor (differ/mscInDay);
+      document.querySelector(".birthday-dates").textContent = displayDays;
+
+      const displayHour = Math.floor( (differ%mscInDay)/mscInHours);
+      document.querySelector(".birthday-hours").textContent = displayHour;
+
+    const displayMinute = Math.floor( (differ%mscInHours)/mscInMinutes);
+      document.querySelector(".birthday-minutes").textContent = displayMinute;
+
+      const displaySecond = Math.floor( (differ%mscInMinutes)/mscInSeconds);
+      document.querySelector(".birthday-seconds").textContent = displaySecond;
+
+      if  (differ <= 0) {
+        document.querySelector(".birthday-dates").textContent = 0;
+        document.querySelector(".birthday-hours").textContent = 0;
+        document.querySelector(".birthday-minutes").textContent = 0;
+        document.querySelector(".birthday-seconds").textContent = 0;
+        
+        clearInterval(birthdayCount);
+
+      }
+
+      
+    }
+    let birthdayCount = setInterval(birthdayCountdown, 1000);
+
+
+
+  </script>
+</body>
+</html>

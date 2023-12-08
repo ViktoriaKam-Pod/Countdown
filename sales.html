@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales countdown</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #f1e1cc;">
+  <div class="time-containers">
+    <div>
+      <h3 class="sales-block-header">black friday starts in</h3>
+    </div>
+    <div class="sales-block">
+      <h4 class="sales-dates"></h4>
+      <h3 class="sales-h3">days</h3>
+    </div>
+    <div class="sales-block">
+      <h4 class="sales-hours"></h4>
+      <h3 class="sales-h3">hours</h3>
+    </div>
+    <div class="sales-block">
+      <h4 class="sales-minutes"></h4>
+      <h3 class="sales-h3">minutes</h3>
+    </div>
+    <div class="sales-block">
+      <h4 class="sales-seconds"></h4>
+      <h3 class="sales-h3">seconds</h3>
+    </div>
+  </div>
+  <div class="sales-heading">
+    <h1 class="sales-header">We are finally open!</h1>
+  </div>
+  <div class="sales-container">
+      <div class="info image_one selected">
+        <h3 class="title">Berta</h3>
+        <p class="par">interchangeable sectional sofa-bed with storage</p>
+        <p class="price">5000$</p>
+      </div>
+      <div class="info image_two">
+        <h3 class="title">Belgravia</h3>
+        <p class="par">sofa-bed with memory foam mattress</p>
+        <p class="price">2000$</p>
+      </div>
+      <div class="info image_three">
+        <h3 class="title">Foodien</h3>
+        <p class="par">recycled teak end table</p>
+        <p class="price">1000$</p>
+      </div>
+      <div class="info image_four">
+        <h3 class="title">Family</h3>
+        <p class="par">acacia wood dining table</p>
+        <p class="price">2500$</p>
+      </div>
+      <div class="info image_five">
+        <h3 class="title">Shean</h3>
+        <p class="par">tufted velvet sofa-bed</p>
+        <p class="price">2100$</p>
+      </div>
+      <div class="info image_six">
+        <h3 class="title">Rabia</h3>
+        <p class="par">tufted upholstered wingback queen size bed with storage</p>
+        <p class="price">5000$</p>
+      </div>
+  </div>
+
+  <div class="questionnaire">
+    <h3 class="questionnaire_header">Send us a message!</h3>
+  </div>
+
+  <form
+  action="https://formspree.io/f/xwkdyyqv"
+  method="POST">
+    <input type="hidden" name="_language" value="uk"/>
+    <div class="sales-heading">
+      <label>
+        Your email:
+        <input type="email" name="email" placeholder="Your email" required="" class="info_form">
+      </label>
+    </div>
+    <br>
+    <div class="sales-heading">
+      <label>
+        Your message:
+        <textarea name="message" placeholder="Your message" required="" class="info_form"></textarea>
+      </label>
+    </div>
+    <br>
+    <div class="sales-heading">
+      <button type="submit" class="sales-btn">Send</button>
+    </div>
+  </form>
+
+
+
+
+
+
+  <script>
+
+function salesCountdown(){
+    const salesDate = new Date("December 1, 2023 00:00");
+    const sale = new Date();
+    const diff = salesDate-sale;
+
+    const msInSeconds = 1000;
+    const msInMinutes = 60*1000;
+    const msInHours = 60*60*1000;
+    const msInDay = 24*60*60*1000;
+
+    const displayDay = Math.floor(diff/msInDay);
+    document.querySelector(".sales-dates").textContent = displayDay;
+
+    const displayHours = Math.floor((diff%msInDay)/msInHours);
+    document.querySelector(".sales-hours").textContent = displayHours;
+
+    const displayMinutes = Math.floor((diff%msInHours)/msInMinutes);
+    document.querySelector(".sales-minutes").textContent = displayMinutes;
+
+    const displaySeconds = Math.floor((diff%msInMinutes)/msInSeconds);
+    document.querySelector(".sales-seconds").textContent = displaySeconds;
+
+      if (diff <= 0) {
+        document.querySelector(".sales-days").textContent = 0;
+        document.querySelector(".sales-hours").textContent = 0;
+        document.querySelector(".sales-minutes").textContent = 0;
+        document.querySelector(".sales-seconds").textContent = 0;
+        
+        clearInterval(salesCount);
+        marryChristmas();
+      }
+
+    
+    }
+
+    let salesCount = setInterval(salesCountdown, 1000);
+
+    const items = document.querySelectorAll('.info');
+    items.forEach(item => {
+      item.addEventListener('mouseover', () => {
+        removeFocus();
+        item.classList.add('selected');
+      })
+
+      removeFocus = () => {
+        items.forEach(item => {
+          item.classList.remove('selected');
+        })
+      }
+    })
+
+  </script>
+</body>
+</html>
